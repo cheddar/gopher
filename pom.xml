@@ -4,7 +4,7 @@
     <artifactId>gopher</artifactId>
     <packaging>jar</packaging>
     <name>gopher</name>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
 
     <description>Gopher gets things and runs them!</description>
     <url>https://github.com/cheddar/gopher</url>
