@@ -4,10 +4,10 @@
     <groupId>io.github.cheddar</groupId>
     <artifactId>gopher</artifactId>
     <packaging>jar</packaging>
-    <name>cli</name>
+    <name>gopher</name>
     <version>0.0.1-SNAPSHOT</version>
 
-    <description>Gopher goes and gets things and runs them!</description>
+    <description>Gopher gets things and runs them!</description>
     <url>https://github.com/cheddar/gopher</url>
 
     <inceptionYear>2013</inceptionYear>
@@ -110,12 +110,8 @@
                 <version>2.2.1</version>
                 <configuration>
                     <mavenExecutorId>forked-path</mavenExecutorId>
-                    <arguments>-Psonatype-oss-release</arguments>
-                    <useReleaseProfile>false</useReleaseProfile>
-                    <pushChanges>false</pushChanges>
                     <localCheckout>true</localCheckout>
                     <preparationGoals>clean install</preparationGoals>
-                    <tagNameFormat>@{project.version}</tagNameFormat>
                 </configuration>
             </plugin>
         </plugins>
@@ -124,12 +120,18 @@
     <profiles>
         <profile>
             <id>sonatype-oss-release</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.1</version>
+                        <version>1.4</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -137,9 +139,6 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
-                                <configuration>
-                                    <useAgent>true</useAgent>
-                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
